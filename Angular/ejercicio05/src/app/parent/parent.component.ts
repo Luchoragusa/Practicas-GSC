@@ -14,4 +14,7 @@ export class ParentComponent implements OnInit {
   ngOnInit() {
   }
 
+  counterChangedHandler(counter: number): void {
+    this.currentCounter = counter;
+  }
 }
