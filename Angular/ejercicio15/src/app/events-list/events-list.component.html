@@ -12,12 +12,22 @@
     </thead>
     <tbody>
       <tr *ngFor="let event of events">
-        <td>{{event.name}}</td>
+        <td><a [routerLink]="['/eventlist','details', event.id]">{{event.name}}</a></td>
         <td>{{event.date}} </td>      
         <td>{{event.time}}</td>
         <td>{{event.location.address}}, {{event.location.city}}, {{event.location.country}}</td>
       </tr>
+      <tr>
+        <td><a [routerLink]="['/eventlist','details', 42]">Evento invalido</a></td>
+        <td>N/A</td>
+        <td>N/A</td>
+        <td>N/A</td>
+       </tr>
+
     </tbody>
   </table>
 
 </div>
+
+
+<router-outlet></router-outlet>

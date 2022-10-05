@@ -1,0 +1,12 @@
+
+<h3>Datos del evento encontrado</h3>
+
+<ul>
+    <li>Event: {{event.name}}</li>
+    <li>Date: {{event.date}}</li>      
+    <li>Time: {{event.time}}</li>
+    <li>Address: {{event.location.address}}, {{event.location.city}}, {{event.location.country}}</li>
+    <input type="checkbox" [value]="reviewed" (change)="reviewedEvent()"> <label for="cbox2">Revisada</label>
+</ul>
+
+<button (click)="returnToEvents()">Volver a eventList!</button>

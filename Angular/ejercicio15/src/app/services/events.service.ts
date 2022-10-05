@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 const events = [
   {
+    id: 1,
     name: 'Angular Connect',
     date: '9/26/2036',
     time: '10am',
@@ -12,6 +13,7 @@ const events = [
     }
   },
   {
+    id: 2,
     name: 'ng-nl',
     date: '4/15/2037',
     time: '9am',
@@ -22,6 +24,7 @@ const events = [
     }
   },
   {
+    id: 3,
     name: 'ng-conf 2037',
     date: '4/15/2037',
     time: '9am',
@@ -32,6 +35,7 @@ const events = [
     }
   },
   {
+    id: 4,
     name: 'UN Angular Summit',
     date: '6/10/2037',
     time: '8am',
@@ -52,6 +56,13 @@ export class EventsService {
 
   getEvents(): any[] {
     return events;
+  }
+
+  getOne(id: string | null): any | undefined {
+    if (!id) {
+      return undefined;
+    }
+    return events.find(event => event.id === +id);
   }
 
 }
