@@ -1,0 +1,53 @@
+<div>
+  <form [formGroup]="eventForm" (ngSubmit)="saveEvent()">
+
+      <label for="name">Nombre del evento:</label>
+      <input type="text" class="form-control" id="name" formControlName="name">
+
+      <div *ngIf="this.eventForm.get('name')?.hasError('required')
+      && this.eventForm.get('name')?.touched">Campo requerido</div>
+
+
+      <label for="date">Fecha del evento:</label>
+      <input type="date" class="form-control" id="date" formControlName="date">
+
+      <div *ngIf="this.eventForm.get('date')?.hasError('required') && this.eventForm.get('date')?.touched">Campo requerido</div>
+
+      <label for="time">Hora del evento:</label>
+      <input type="text" class="form-control" id="time" formControlName="time">
+
+      <div *ngIf="this.eventForm.get('time')?.hasError('required') && this.eventForm.get('time')?.touched">Campo requerido</div>
+
+      <div formGroupName= "location">
+
+        <label for="address">Direccion del evento:</label>
+        <input type="text" class="form-control" id="address" formControlName="address">
+
+        <div *ngIf="this.eventForm.get('address')?.hasError('required') && this.eventForm.get('address')?.touched">Campo requerido</div>
+
+        <label for="city">Ciudad del evento:</label>
+        <input type="text" class="form-control" id="city" formControlName="city">
+
+        <div *ngIf="this.eventForm.get('city')?.hasError('required') && this.eventForm.get('city')?.touched">Campo requerido</div>
+
+
+        <label for="country">Pais del evento:</label>
+        <input type="text" class="form-control" id="country" formControlName="country">
+
+        <!-- Validacion de requerido -->
+
+        <div *ngIf="this.eventForm.get('location')?.get('country')?.hasError('required') && this.eventForm.get('location')?.get('country')?.touched">Campo requerido</div>
+       
+       <!-- Validacion de patron -->
+
+        <div *ngIf="this.eventForm.get('location')?.get('country')?.hasError('pattern') && this.eventForm.get('location')?.get('country')?.touched">C Campo invalido</div>
+
+      </div>
+
+      <label>{{ eventForm.value | json }}</label>
+      <label>{{ eventForm.valid }}</label>
+
+    <button type="submit" class="btn btn-primary" [disabled] = "!eventForm.valid" >Guardar</button>
+    <button type="button" class="btn btn-default" (click)="cancel()">Cancelar</button>
+  </form>
+</div>

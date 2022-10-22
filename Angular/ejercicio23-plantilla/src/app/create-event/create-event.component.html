@@ -1,0 +1,84 @@
+<div class="container-fluid">
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+
+    <div class="form-group">
+      <label for="event-name">Nombre del evento:</label>
+      <input id="event-name" name="name"
+      #name ="ngModel" [(ngModel)]="event.name" type="text" required/>
+    </div>
+    <div class="text-danger"
+    *ngIf="name.invalid && name.hasError('required') && (name.touched || name.dirty)">
+      El campo es requerido
+    </div>
+
+    <div class="form-group">
+      <label for="date">Fecha: </label>
+      <input id="date" name="date"
+      #date ="ngModel" [ngModel]="event.date" dateValidator
+      type="date" required/>
+    </div>
+    <div
+    *ngIf="date.invalid && (date.touched || date.dirty)">
+      <div class="text-danger"
+      *ngIf="date.hasError('required')">
+        El campo es requerido
+      </div>
+      <div class="text-danger" *ngIf="date.value && date.errors?.['date'] ">
+        La Fecha ingresada NO puede ser ni {{date?.errors?.['requiredValue'] }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="time">Hora: </label>
+      <input id="time" name="time"
+      #time ="ngModel" [ngModel]="event.time"
+      type="text" required/>
+    </div>
+    <div class="text-danger"
+    *ngIf="time.invalid && time.hasError('required') && (time.touched || time.dirty)">
+      El campo es requerido
+    </div>
+
+    <div ngModelGroup="location" #nameCtrl="ngModelGroup">
+    <div class="form-group">
+      <label for="address">Dirección: </label>
+      <input id="address" name="address"
+      #address ="ngModel" [ngModel]="event.location.address"
+      type="text" required/>
+    </div>
+    <div class="text-danger"
+    *ngIf="address.invalid && address.hasError('required') && (address.touched || address.dirty)">
+      El campo es requerido
+    </div>
+
+    <div class="form-group">
+      <label for="city">Ciudad: </label>
+      <input id="city" name="city"
+      #city ="ngModel" [ngModel]="event.location.city"
+      type="text" required/>
+    </div>
+    <div class="text-danger"
+    *ngIf="city.invalid && name.hasError('required') && (city.touched || city.dirty)">
+      El campo es requerido
+    </div>
+
+    <div class="form-group">
+      <label for="country">Pais: </label>
+      <input id="country" name="country"
+      #country ="ngModel" [ngModel]="event.location.country"
+      type="text" pattern=".*[A-Z].*[A-Z].*" required/>
+    </div>
+    <div class="text-danger"
+    *ngIf="country.invalid && country.hasError('required') && (country.touched || country.dirty)">
+      El campo es requerido
+    </div>
+    <div class="text-danger"
+    *ngIf="country.invalid && country.hasError('pattern') && (country.touched || country.dirty)">
+      El formato del campo es invalido
+    </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Guardar</button>
+    <button type="button" class="btn btn-default" (click)="cancel()">Cancelar</button>
+  </form>
+</div>
